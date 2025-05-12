@@ -61,22 +61,28 @@ const Search = () => {
                         <i className="fa-solid text-gray-400 fa-magnifying-glass"></i>
                         <input value={searchValue} onChange={handleChange} onKeyUp={handleSearch} className="w-full outline-none bg-transparent" placeholder="Search" type="text" />
                     </div>
-                    <div className="flex flex-col overflow-y-auto scroller gap-2 my-5 mx-60">
-                        {searchArr && searchArr.map((data, index) => {
-                            if (!data.username) return null;
-                            return (
-                                <div key={index} className="flex justify-between scroller hover:bg-[#1A1A1A] border-solid border-[#1A1A1A] border px-5 py-3 rounded-lg items-center">
-                                    <div className="flex items-center gap-5">
-                                        <div className="rounded-full flex justify-center items-center w-12 h-12 text-xl font-bold bg-yellow-500">
-                                            {data.username.charAt(0).toLocaleUpperCase()}
+                    {
+                        searchValue !== "" ? (
+                            <div className="flex flex-col overflow-y-auto scroller gap-2 my-5 mx-60">
+                                {searchArr && searchArr.map((data, index) => {
+                                    if (!data.username) return null;
+                                    return (
+                                        <div key={index} className="flex justify-between scroller hover:bg-[#1A1A1A] border-solid border-[#1A1A1A] border px-5 py-3 rounded-lg items-center">
+                                            <div className="flex items-center gap-5">
+                                                <div className="rounded-full flex justify-center items-center w-12 h-12 text-xl font-bold bg-yellow-500">
+                                                    {data.username.charAt(0).toLocaleUpperCase()}
+                                                </div>
+                                                <p className="text-xl font-bold">{data.username}</p>
+                                            </div>
+                                            <button onClick={() => handleNewMessage(data)} className="bg-[#1693EE] px-5 py-2 font-semibold rounded-md cursor-pointer">Message</button>
                                         </div>
-                                        <p className="text-xl font-bold">{data.username}</p>
-                                    </div>
-                                    <button onClick={() => handleNewMessage(data)} className="bg-[#1693EE] px-5 py-2 font-semibold rounded-md cursor-pointer">Message</button>
-                                </div>
-                            )
-                        })}
-                    </div>
+                                    )
+                                })}
+                            </div>
+                        ) : (
+                            <></>
+                        )
+                    }
                 </section>
             </main>
         </Fragment>
