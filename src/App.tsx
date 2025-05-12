@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Fragment } from "react";
+import Login from "./components/Login";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Signup from "./components/Signup";
+import Landing from "./components/Landing";
+import Chat from "./components/Chat";
+import DataContextProvider from "./context/dataContextProrvider";
+import Search from "./components/Search";
+import Myaccount from "./components/Myaccount";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <DataContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/signup" element={<Signup />}></Route>
+            <Route path="/" element={<Landing />}></Route>
+            <Route path="/messages" element={<Chat />}></Route>
+            <Route path="/Search" element={<Search />}></Route>
+            <Route path="/Myaccount" element={<Myaccount />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </DataContextProvider>
+    </Fragment>
   );
 }
 
